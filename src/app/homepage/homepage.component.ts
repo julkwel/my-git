@@ -4,6 +4,8 @@ import { GithubUser } from '../model/user';
 import { GithubService } from '../services/github-service';
 
 const defaultTitle = 'LISTE OF YOUR REPOSITORIES';
+const searchTitle =  'SEARCH RESULTS';
+const errorTitle = 'COULD NOT LOAD RESULTS';
 
 @Component({
   selector: 'app-homepage',
@@ -21,6 +23,7 @@ export class HomepageComponent implements OnInit {
   search: any = '';
   searchResults : Repos[] = [];
   title: string = defaultTitle;
+  errorTitle: string = errorTitle;
 
   constructor(private githubService: GithubService) { }
 
@@ -30,10 +33,10 @@ export class HomepageComponent implements OnInit {
 
   loadUserRepos(){
     this.getUser().then((res: any) => {
-      this.user = res.data;
-      this.loading = false;
+      this.setUser(res.data);
+      this.isLoading(false);
 
-      this.loadingRepo = true;
+      this.isReposLoading(true)
       this.getRepos(this.user.repos_url);
     })
   }
@@ -44,25 +47,44 @@ export class HomepageComponent implements OnInit {
 
   async getRepos(url: string) {
     const res = await this.githubService.getUserRepositoryList(url);
-    this.userRepos = res.data;
-    this.loadingRepo = false;
+    this.setUserRepos(res.data);
+    this.isReposLoading(false);
   }
 
   doSearch(evt: any){
     evt.preventDefault();
 
     if(this.search.length === 0){
-      this.title = defaultTitle;
+      this.setTitle(defaultTitle);
 
       return this.loadUserRepos();
     }
 
-    this.loadingRepo = true;
-
+    this.isReposLoading(true);
     this.githubService.searchRepository(this.search).then(res => {
-      this.userRepos = res.data.items;
-      this.loadingRepo = false;
-      this.title = 'SEARCH RESULTS'
+      this.setUserRepos(res.data.items);
+      this.isReposLoading(false);
+      this.setTitle(searchTitle);
     });
+  }
+
+  setUser(userpayload : GithubUser){
+    this.user = userpayload;
+  }
+
+  setUserRepos(userRepos: Repos[] = []){
+    this.userRepos = userRepos;
+  }
+
+  isLoading(state: boolean = false){
+    this.loading = state;
+  }
+
+  isReposLoading(state: boolean = false){
+    this.loadingRepo = state;
+  }
+
+  setTitle(title: string = defaultTitle){
+      this.title = title;
   }
 }

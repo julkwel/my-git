@@ -5,8 +5,9 @@
         role="status"
     ></div>
 </div>
+
 <!-- Profile Card 4 -->
-<div class="col-md-4 mt-4 m-auto">
+<div class="col-md-4 mt-4 m-auto" *ngIf="user.name">
     <div class="card profile-card-4">
         <div class="card-img-block">
             <div class="info-box">{{user.bio}}</div>
@@ -43,6 +44,11 @@
 </div>
 
 <div class="container mt-5">
+    <div class="col-md-4 m-auto">
+        <div class="alert alert-danger" *ngIf="!user.name" role="alert">
+            {{ errorTitle }}
+        </div>
+    </div>
     <div class="mt-auto text-center">
         <div
             *ngIf="loadingRepo"
@@ -51,7 +57,7 @@
         ></div>
     </div>
     <mdb-card>
-        <mdb-card-header class="text-center">
+        <mdb-card-header class="text-center" *ngIf="userRepos.length > 0">
             <h2>{{title}}</h2>
             <div class="row justify-content-center  w-100">
                 <form
