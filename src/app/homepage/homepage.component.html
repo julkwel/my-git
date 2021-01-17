@@ -1,0 +1,8 @@
+
+<div class="alert alert-success mb-2 mt-2">GITHUB REPOSITORY STATUS</div>
+<div *ngIf="loading">Loading</div>
+<ul class="list-group" *ngFor="let item of payload">
+    <li class="list-group-item">USERNAME : {{ item.name }}</li>
+    <li class="list-group-item">crée le : {{ item.created_at }}</li>
+    <li class="list-group-item">Dernier mise a jour : {{ item.created_at }}</li>
+</ul>
