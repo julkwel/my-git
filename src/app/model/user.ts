@@ -21,4 +21,5 @@ export class GithubUser {
     twitter_username!: null;
     updated_at!: string;
     bio!:string;
+    html_url!:string;
 }

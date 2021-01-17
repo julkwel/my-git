@@ -26,17 +26,17 @@
             <h5 class="card-title text-center">{{user.name}}  ({{user.location}})</h5>
             <p class="card-text text-center">{{user.bio}}</p>
             <div class="icon-block text-center">
-                <a
-                    href={{user.repos_url}}
-                    target="_blank"
-                >
-                    <i class="fab fa-github"></i>
+                <a title="Github profile" href={{user.html_url}} class="chip blue lighten-4 waves-effect">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    {{user.name}}
                 </a>
-                <a href={{user.twitter_username}}>
-                    <i class="fab fa-twitter"></i>
+                <a title="Public repository" href={{user.html_url}} class="chip blue lighten-4 waves-effect">
+                    <i class="fas fa-folder" aria-hidden="true"></i>
+                    {{user.public_repos}}
                 </a>
-                <a href="#">
-                    <i class="fab fa-facebook"></i>
+                <a title="Followers" href="https://github.com/julkwel?tab=followers" class="chip blue lighten-4 waves-effect">
+                    <i class="fas fa-user-friends" aria-hidden="true"></i>
+                    {{user.followers}}
                 </a>
             </div>
         </div>
@@ -82,38 +82,32 @@
             </div>
         </mdb-card-header>
         <div class="row justify-content-center">
-            <mdb-card
-                class="col col-md-3 m-1"
-                *ngFor="let repo of userRepos"
-            >
-                <div
-                    class="view rgba-white-slight waves-light"
-                    mdbWavesEffect
-                >
-                    <mdb-card-img
-                        src={{githubReps}}
-                        alt="Card image cap"
-                    ></mdb-card-img>
-                    <a>
-                        <div class="mask"></div>
-                    </a>
-                </div>
-                <mdb-card-body>
-                    <mdb-card-title>
-                        <h4>{{repo.name}}</h4>
-                    </mdb-card-title>
-                    <mdb-card-text>{{repo.description}}</mdb-card-text>
-                </mdb-card-body>
-                <mdb-card-footer class="text-center">
-                    <a
-                        href={{repo.html_url}}
-                        target="_blank"
-                        mdbWavesEffect
-                    >
-                        <i class="fab fa-lg fa-github"></i>
-                    </a>
-                </mdb-card-footer>
-            </mdb-card>
+                <!--Card-->
+                <mdb-card class="col-md-3 m-1" cascade="true" *ngFor="let repo of userRepos">
+                  <!--Card image-->
+                  <div class="view view-cascade overlay waves-light d-flex justify-content-center text-center" mdbWavesEffect>
+                    <img width="100" height="100" class="rounded-circle" src={{repo.owner.avatar_url}} />
+                  </div>
+                  <!--/Card image-->
+            
+                  <mdb-card-body cascade="true" class="text-center">
+                    <!--Card content-->
+                    <strong>@{{repo.owner.login}}</strong>
+                    <h5>{{repo.name}}</h5>
+                    <mdb-card-text>
+                        {{repo.description}}
+                    </mdb-card-text>
+                  </mdb-card-body>
+                  <!--/.Card content-->
+
+                  <mdb-card-footer class="text-center">
+                      <!--Twitter-->
+                      <a target="_blank" type="button" href={{repo.html_url}} mdbBtn floating="true" size="sm" color="tw" class="waves-light" mdbWavesEffect>
+                        <i class="fab fa-github text-danger"></i>
+                      </a>
+                  </mdb-card-footer>
+                </mdb-card>
+                <!--/.Card-->
         </div>
     </mdb-card>
 </div>

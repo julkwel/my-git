@@ -17,4 +17,8 @@ export class Repos {
     forks!: number;
     open_issues!: number;
     watchers!: number;
+    owner!: {
+        login: string,
+        avatar_url: string,
+    }
 }
