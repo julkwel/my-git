@@ -24,4 +24,10 @@ export class GithubService {
             'per_page' : 100
         });
     }
+
+    async searchRepository(label: string){
+        return this.octokit.request('GET /search/repositories',{
+            q: label
+        })
+    }
 }

@@ -8,6 +8,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {SortPipe} from './pipe/sort';
 import { RangePipe } from './pipe/range';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { RangePipe } from './pipe/range';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [],

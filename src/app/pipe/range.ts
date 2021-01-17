@@ -6,6 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class RangePipe implements PipeTransform {
     transform(length: number, perPage: number): any {
+        let rangeInit = [];
         return [];
     }
 }

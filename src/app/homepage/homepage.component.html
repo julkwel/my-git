@@ -1,11 +1,12 @@
-
-
 <div class="col-md-4 m-auto text-center">
-    <div *ngIf="loading" class="spinner-border text-primary" role="status"></div>
+    <div
+        *ngIf="loading"
+        class="spinner-border text-primary"
+        role="status"
+    ></div>
 </div>
 <!-- Profile Card 4 -->
-<div
-    class="col-md-4 mt-4 m-auto">
+<div class="col-md-4 mt-4 m-auto">
     <div class="card profile-card-4">
         <div class="card-img-block">
             <div class="info-box">{{user.bio}}</div>
@@ -43,23 +44,70 @@
 
 <div class="container mt-5">
     <div class="mt-auto text-center">
-        <div *ngIf="loadingRepo" class="spinner-border text-primary" role="status"></div>
+        <div
+            *ngIf="loadingRepo"
+            class="spinner-border text-primary"
+            role="status"
+        ></div>
     </div>
-    <mdb-card  *ngIf="userRepos.length > 1">
-        <mdb-card-header class="text-center">LISTE OF YOUR REPOSITORIES</mdb-card-header>
-        <ul class="list-group list-group-flush" *ngFor="let repo of (userRepos | sort : 'stargazers_count')">
-            <li class="list-group-item">
-                <a href={{repo.html_url}} target="_blank">
-                    <i class="fab fa-github"></i>
-                </a>
-                <span> {{repo.name}}</span>
-            </li>
-        </ul>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination pg-blue" *ngFor="let page of (userRepos.length|range : 5)">
-              <li class="page-item"><a class="page-link" mdbWavesEffect>1</a></li>
-            </ul>
-        </nav>
+    <mdb-card>
+        <mdb-card-header class="text-center">
+            <h2>{{title}}</h2>
+            <div class="row justify-content-center  w-100">
+                <form
+                    class="form-inline md-form form-sm"
+                    (submit)="doSearch($event);"
+                >
+                    <mdb-icon
+                        fas
+                        icon="search"
+                        aria-hidden="true"
+                    ></mdb-icon>
+                    <input
+                        class="form-control form-control-sm ml-3 w-75"
+                        [(ngModel)]="search"
+                        name="search"
+                        type="text"
+                        placeholder="Search"
+                        aria-label="Search"
+                        mdbInput
+                    >
+                </form>
+            </div>
+        </mdb-card-header>
+        <div class="row justify-content-center">
+            <mdb-card
+                class="col col-md-3 m-1"
+                *ngFor="let repo of userRepos"
+            >
+                <div
+                    class="view rgba-white-slight waves-light"
+                    mdbWavesEffect
+                >
+                    <mdb-card-img
+                        src={{githubReps}}
+                        alt="Card image cap"
+                    ></mdb-card-img>
+                    <a>
+                        <div class="mask"></div>
+                    </a>
+                </div>
+                <mdb-card-body>
+                    <mdb-card-title>
+                        <h4>{{repo.name}}</h4>
+                    </mdb-card-title>
+                    <mdb-card-text>{{repo.description}}</mdb-card-text>
+                </mdb-card-body>
+                <mdb-card-footer class="text-center">
+                    <a
+                        href={{repo.html_url}}
+                        target="_blank"
+                        mdbWavesEffect
+                    >
+                        <i class="fab fa-lg fa-github"></i>
+                    </a>
+                </mdb-card-footer>
+            </mdb-card>
+        </div>
     </mdb-card>
 </div>
-
