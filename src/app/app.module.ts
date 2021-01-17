@@ -6,11 +6,15 @@ import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import {HttpClientModule} from '@angular/common/http';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {SortPipe} from './pipe/sort';
+import { RangePipe } from './pipe/range';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
+    SortPipe,
+    RangePipe
   ],
   imports: [
     BrowserModule,

@@ -6,18 +6,22 @@ import { environment } from 'src/environments/environment';
 @Injectable({providedIn: 'root'})
 
 export class GithubService {
-    constructor(private httpClient: HttpClient) { }
-    
-    getOctokit(){
-        return new Octokit({
+    octokit: any;
+    constructor(private httpClient: HttpClient) { 
+        this.octokit = new Octokit({
             auth: environment.GITHUB_TOKEN,
             baseUrl: "https://api.github.com",
         });
     }
 
-    async getRepositoryList(){
-        const octokit = this.getOctokit();
+    async getUserProfile(){
+        return this.octokit.request('GET /user');
+    }
 
-        return octokit.request('GET /user');
+    async getUserRepositoryList(url: string){
+        return this.octokit.request(`GET ${url}`, {
+            'sort' : 'createdAt',
+            'per_page' : 100
+        });
     }
 }

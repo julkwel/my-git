@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  GITHUB_TOKEN : '3b9c49aa8edfb75d20056f41e2e2179405400f78'
+  GITHUB_TOKEN : '661197d35c952709f02cb1d5d74d43ef23cbba0c'
 };
 
 /*

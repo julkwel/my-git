@@ -20,4 +20,5 @@ export class GithubUser {
     total_private_repos!: number;
     twitter_username!: null;
     updated_at!: string;
+    bio!:string;
 }
