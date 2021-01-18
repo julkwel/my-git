@@ -83,14 +83,14 @@
         </mdb-card-header>
         <div class="row justify-content-center">
                 <!--Card-->
-                <mdb-card class="col-md-3 m-1" cascade="true" *ngFor="let repo of userRepos">
+                <mdb-card class="col-md-3 m-1" *ngFor="let repo of userRepos">
                   <!--Card image-->
                   <div class="view view-cascade overlay waves-light d-flex justify-content-center text-center" mdbWavesEffect>
                     <img width="100" height="100" class="rounded-circle" src={{repo.owner.avatar_url}} />
                   </div>
                   <!--/Card image-->
             
-                  <mdb-card-body cascade="true" class="text-center">
+                  <mdb-card-body class="text-center">
                     <!--Card content-->
                     <strong>@{{repo.owner.login}}</strong>
                     <h5>{{repo.name}}</h5>
@@ -102,7 +102,7 @@
 
                   <mdb-card-footer class="text-center">
                       <!--Twitter-->
-                      <a target="_blank" type="button" href={{repo.html_url}} mdbBtn floating="true" size="sm" color="tw" class="waves-light" mdbWavesEffect>
+                      <a target="_blank" type="button" href={{repo.html_url}} mdbBtn size="sm" color="tw" class="waves-light" mdbWavesEffect>
                         <i class="fab fa-github text-danger"></i>
                       </a>
                   </mdb-card-footer>

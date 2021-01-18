@@ -3,7 +3,7 @@ import { Repos } from '../model/repos';
 import { GithubUser } from '../model/user';
 import { GithubService } from '../services/github-service';
 
-const defaultTitle = 'LISTE OF YOUR REPOSITORIES';
+const defaultTitle = 'LIST OF YOUR REPOSITORIES';
 const searchTitle =  'SEARCH RESULTS';
 const errorTitle = 'COULD NOT LOAD RESULTS';
 
