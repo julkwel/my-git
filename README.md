@@ -1,6 +1,6 @@
 # My git
 
-## My Angular project
+## Mini-project with angular
 
 `Challenge to create a mini-card for github profile rendering with stats`
 
